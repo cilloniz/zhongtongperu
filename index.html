@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhongtong Perú | Buses diésel, GNV y eléctricos</title>
+<meta name="description" content="Representantes de Zhongtong en el Perú. Buses diésel, GNV y eléctricos de 7, 9, 11 y 12 metros, de 26 a 55 pasajeros. Llámanos al 977 408 899.">
+<link rel="icon" href="assets/logo-white.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent:#418CC5; --accent-rgb:65,140,197; --accent-light:#7DB8E6;
+    --red:#BE0101; --red-rgb:190,1,1;
+    --bg:#05080F; --bg-2:#0A0F1A;
+    --text:#FFFFFF; --text-2:#9AA6B8; --text-3:#64708A;
+    --glass:rgba(255,255,255,.035); --glass-border:rgba(255,255,255,.07);
+    --f-head:'Space Grotesk',sans-serif; --f-body:'Archivo',sans-serif; --f-mono:'JetBrains Mono',monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--bg);color:var(--text);font-family:var(--f-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--accent);color:#fff}
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#03050a}
+  ::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),var(--red));border-radius:10px;border:2px solid #03050a}
+  ::-webkit-scrollbar-thumb:hover{box-shadow:0 0 12px var(--accent)}
+  h1,h2,h3,h4{font-family:var(--f-head);letter-spacing:-.03em;line-height:1.05}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  /* Starscape */
+  #starscape{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.6}
+  main,footer,#navbar{position:relative;z-index:1}
+
+  /* Loader */
+  #loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
+  .loader-content{text-align:center}
+  .loader-content img{width:150px;margin:0 auto 22px}
+  .loader-text{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-2);margin-bottom:14px}
+  .loader-track{width:200px;height:3px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;margin:0 auto}
+  .loader-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-light));transition:width .3s ease}
+
+  /* Progress */
+  #scrollProgress{position:fixed;top:0;left:0;height:3px;width:0;z-index:10000;background:linear-gradient(90deg,var(--accent),var(--accent-light) 70%,var(--red))}
+
+  /* Navbar */
+  #navbar{position:fixed;top:12px;left:0;right:0;z-index:1000;padding:0 16px}
+  .nav-inner{max-width:100%;margin:0 auto;padding:12px 28px;display:flex;justify-content:space-between;align-items:center;border:1px solid transparent;border-radius:0;transition:all .45s cubic-bezier(.16,1,.3,1)}
+  #navbar.nav-scrolled .nav-inner{max-width:860px;background:rgba(10,15,26,.6);border-color:var(--glass-border);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:100px;padding:9px 12px 9px 24px}
+  .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .nav-logo img{height:30px;width:auto}
+  .nav-logo .pe{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.18em;color:var(--text-2);border-left:1px solid rgba(255,255,255,.15);padding-left:12px}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{text-decoration:none;font-size:.88rem;color:var(--text-2);transition:color .2s}
+  .nav-links a:hover{color:#fff}
+  .nav-links a.nav-cta{background:var(--accent);color:#fff;padding:9px 20px;border-radius:100px;font-weight:600;box-shadow:0 0 20px rgba(var(--accent-rgb),.35)}
+  .nav-links a.nav-cta:hover{box-shadow:0 0 30px rgba(var(--accent-rgb),.6)}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:12px;font-weight:600;font-size:.98rem;text-decoration:none;transition:all .3s ease;cursor:pointer;border:0;font-family:var(--f-body)}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 24px rgba(var(--accent-rgb),.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 38px rgba(var(--accent-rgb),.6)}
+  .btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2)}
+  .btn-secondary:hover{border-color:var(--accent);background:rgba(var(--accent-rgb),.08)}
+  .btn svg{width:18px;height:18px}
+
+  /* Section base */
+  section{position:relative}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-light)}
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--red)}
+  .section-title{font-size:clamp(2rem,4.4vw,3.3rem);font-weight:700;margin:14px 0 16px}
+  .section-sub{color:var(--text-2);max-width:620px;font-size:1.05rem}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Hero */
+  #hero{padding:150px 0 40px;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+  .orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;animation:orbFloat 22s ease-in-out infinite}
+  .orb-1{width:560px;height:560px;background:var(--accent);opacity:.17;top:-240px;right:-140px}
+  .orb-2{width:420px;height:420px;background:var(--red);opacity:.1;bottom:10%;left:-200px;animation-direction:reverse}
+  @keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+  .grid-overlay{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 20%,transparent 75%)}
+  .hero-content{position:relative;text-align:center}
+  .hero-badge{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:100px;border:1px solid rgba(var(--accent-rgb),.35);background:rgba(var(--accent-rgb),.08);font-family:var(--f-mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-light)}
+  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 10px var(--red)}
+  .hero-title{font-size:clamp(2.6rem,7vw,5.6rem);font-weight:700;margin:22px auto 18px;max-width:980px}
+  .hero-title .grad{background:linear-gradient(90deg,#fff 10%,var(--accent-light) 55%,var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-subtitle{color:var(--text-2);font-size:clamp(1rem,1.6vw,1.2rem);max-width:640px;margin:0 auto 34px}
+  .hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-photo{position:relative;margin:56px auto 0;max-width:1400px;padding:0 20px}
+  .hero-photo-frame{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--glass-border);box-shadow:0 40px 120px -30px rgba(var(--accent-rgb),.45)}
+  .hero-photo img{width:100%;height:auto;aspect-ratio:1920/733;object-fit:cover;object-position:50% 47%;transform:scale(1.06);transition:transform 1.6s cubic-bezier(.16,1,.3,1)}
+  .hero-photo.in img{transform:scale(1)}
+  .hero-photo-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,15,0) 55%,rgba(5,8,15,.65));pointer-events:none}
+  .hero-photo-tag{position:absolute;left:28px;bottom:22px;z-index:2;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .scroll-hint{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:38px;color:var(--text-3);font-family:var(--f-mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase}
+  .scroll-arrow{width:20px;height:32px;border:1.5px solid rgba(255,255,255,.25);border-radius:12px;position:relative}
+  .scroll-arrow::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;border-radius:2px;background:var(--accent);transform:translateX(-50%);animation:wheel 1.8s ease-in-out infinite}
+  @keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+
+  /* Specs */
+  #specs{padding:110px 0}
+  .specs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px}
+  .spec-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:34px 26px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);position:relative;overflow:hidden}
+  .spec-item::before{content:"";position:absolute;top:0;left:26px;right:26px;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+  .spec-number{display:block;font-family:var(--f-head);font-size:clamp(1.7rem,2.9vw,2.7rem);font-weight:700;letter-spacing:-.04em;white-space:nowrap;transition:text-shadow .3s}
+  .spec-number.counting{text-shadow:0 0 22px rgba(var(--accent-rgb),.7);color:var(--accent-light)}
+  .spec-label{display:block;color:var(--text-2);font-size:.95rem;margin-top:6px}
+
+  /* Models */
+  #modelos{padding:110px 0}
+  .models-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+  .model-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+  .model-card:hover{transform:translateY(-6px);border-color:rgba(var(--accent-rgb),.35);box-shadow:0 30px 80px -30px rgba(var(--accent-rgb),.4)}
+  .model-img{background:linear-gradient(180deg,#fff,#eef2f7);aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .model-img img{width:100%;height:100%;object-fit:contain;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .model-card:hover .model-img img{transform:scale(1.04)}
+  .model-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+  .model-tag{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-light)}
+  .model-tag.red{color:#ff6b6b}
+  .model-body h3{font-size:1.45rem;margin:8px 0 4px}
+  .model-code{font-family:var(--f-mono);font-size:.8rem;color:var(--text-3);margin-bottom:12px}
+  .model-body p{color:var(--text-2);font-size:.94rem;margin-bottom:18px}
+  .model-specs{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto;padding-top:18px;border-top:1px solid var(--glass-border)}
+  .model-specs li{font-size:.8rem;color:var(--text-3)}
+  .model-specs b{display:block;font-family:var(--f-head);font-size:1.05rem;color:#fff;font-weight:600}
+  .range-strip{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .chip{padding:8px 16px;border-radius:100px;border:1px solid var(--glass-border);background:var(--glass);font-size:.85rem;color:var(--text-2)}
+
+  /* Coming soon + filter + model hero */
+  .fuel-filter{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+  .fuel-btn{font-family:var(--f-body);font-size:.9rem;font-weight:600;padding:9px 20px;border-radius:100px;border:1px solid var(--glass-border);background:var(--glass);color:var(--text-2);cursor:pointer;transition:all .25s}
+  .fuel-btn:hover{color:#fff;border-color:rgba(var(--accent-rgb),.4)}
+  .fuel-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 0 20px rgba(var(--accent-rgb),.35)}
+  #modelsGrid{margin-top:26px}
+  .model-card.hide{display:none}
+  .model-hero{aspect-ratio:3/2;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 30% 20%,rgba(var(--accent-rgb),.35),transparent 60%),linear-gradient(160deg,#0f1a2b,#070b13)}
+  .model-hero.diesel{background:radial-gradient(ellipse at 30% 20%,rgba(var(--red-rgb),.35),transparent 60%),linear-gradient(160deg,#1c0f12,#0a0709)}
+  .model-hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:28px 28px}
+  .model-hero .len{position:relative;z-index:1;font-family:var(--f-head);font-weight:700;font-size:5.2rem;letter-spacing:-.06em;line-height:1}
+  .model-hero .len small{font-size:1.6rem;letter-spacing:0;margin-left:4px;color:var(--text-2)}
+  .model-hero .fuel{position:absolute;z-index:1;top:16px;right:16px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:100px;background:rgba(var(--accent-rgb),.2);border:1px solid rgba(var(--accent-rgb),.45);color:var(--accent-light)}
+  .model-hero.diesel .fuel{background:rgba(var(--red-rgb),.2);border-color:rgba(var(--red-rgb),.5);color:#ff8a8a}
+  .model-photo{aspect-ratio:3/2;position:relative;overflow:hidden;background:#0a0f1a}
+  .model-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .model-card:hover .model-photo img{transform:scale(1.05)}
+  .model-photo .fuel,.model-img .fuel{position:absolute;z-index:1;top:14px;right:14px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:100px;background:rgba(5,8,15,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(var(--accent-rgb),.55);color:var(--accent-light)}
+  .model-photo .fuel.diesel{border-color:rgba(var(--red-rgb),.6);color:#ff8a8a}
+  .model-img{position:relative}
+  .model-card-cta{justify-content:center;background:linear-gradient(160deg,rgba(var(--accent-rgb),.16),rgba(255,255,255,.02));border-color:rgba(var(--accent-rgb),.3)}
+  .model-card-cta .model-body{justify-content:center}
+  .model-card-cta .btn{align-self:flex-start;margin-top:6px}
+  .cta-meta a{color:var(--accent-light);text-decoration:none}
+
+  /* Features */
+  #tecnologia{padding:110px 0}
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+  .feature-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:32px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:transform .3s ease,border-color .3s ease}
+  .feature-card:hover{transform:translateY(-4px);border-color:rgba(var(--accent-rgb),.3)}
+  .feature-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(var(--accent-rgb),.12);border:1px solid rgba(var(--accent-rgb),.25);margin-bottom:20px;color:var(--accent-light)}
+  .feature-icon svg{width:24px;height:24px}
+  .feature-card h3{font-size:1.18rem;margin-bottom:10px}
+  .feature-card p{color:var(--text-2);font-size:.93rem}
+
+  /* LatAm */
+  #latam{padding:110px 0}
+  .latam-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+  .latam-list{display:flex;flex-direction:column;gap:16px}
+  .latam-item{display:flex;gap:18px;align-items:flex-start;padding:22px 24px;border-radius:18px;background:var(--glass);border:1px solid var(--glass-border)}
+  .latam-item .flag{font-family:var(--f-mono);font-size:.75rem;font-weight:500;letter-spacing:.1em;min-width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(var(--accent-rgb),.12);color:var(--accent-light);border:1px solid rgba(var(--accent-rgb),.25)}
+  .latam-item.pe .flag{background:rgba(var(--red-rgb),.15);color:#ff7a7a;border-color:rgba(var(--red-rgb),.4)}
+  .latam-item h4{font-size:1.08rem;margin-bottom:4px}
+  .latam-item p{color:var(--text-2);font-size:.92rem}
+  .coach-view{border-radius:20px;background:linear-gradient(180deg,#fff,#eef2f7);padding:18px;margin-top:26px}
+
+  /* CTA */
+  #cta{padding:130px 0;text-align:center;overflow:hidden}
+  #cta .orb-1{top:auto;bottom:-260px;right:50%;transform:translateX(50%);opacity:.2}
+  .cta-box{position:relative;max-width:860px;margin:0 auto;padding:64px 40px;border-radius:30px;background:linear-gradient(160deg,rgba(var(--accent-rgb),.14),rgba(255,255,255,.02) 60%);border:1px solid rgba(var(--accent-rgb),.25)}
+  .cta-box h2{font-size:clamp(2rem,4.6vw,3.4rem);margin-bottom:16px}
+  .cta-box p{color:var(--text-2);max-width:560px;margin:0 auto 34px;font-size:1.05rem}
+  .cta-meta{margin-top:26px;font-family:var(--f-mono);font-size:.75rem;color:var(--text-3);letter-spacing:.06em}
+
+  /* Footer */
+  footer{border-top:1px solid var(--glass-border);padding:60px 28px 40px;text-align:center}
+  footer img{height:34px;width:auto;margin:0 auto 22px}
+  .footer-links{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-bottom:22px}
+  .footer-links a{color:var(--text-2);text-decoration:none;font-size:.9rem}
+  .footer-links a:hover{color:#fff}
+  .footer-copy{color:var(--text-3);font-size:.8rem;max-width:720px;margin:0 auto}
+
+  /* Responsive */
+  @media (max-width:1000px){
+    .models-grid,.features-grid,.specs-grid{grid-template-columns:1fr 1fr}
+    .latam-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:768px){
+    .nav-links a:not(.nav-cta){display:none}
+    .nav-inner{padding:10px 16px}
+    .nav-logo img{height:24px}
+    .nav-logo .pe{display:none}
+    #hero{padding-top:120px;min-height:auto}
+    .hero-photo{padding:0 12px;margin-top:40px}
+    .hero-photo-frame{border-radius:16px}
+    .hero-photo img{aspect-ratio:16/10}
+    .hero-photo-tag{left:16px;bottom:14px;font-size:.6rem}
+    .specs-grid{grid-template-columns:1fr 1fr;gap:14px}
+    .spec-item{padding:24px 18px}
+    .models-grid,.features-grid{grid-template-columns:1fr}
+    #specs,#modelos,#tecnologia,#latam{padding:80px 0}
+    .cta-box{padding:46px 22px}
+    .wrap{padding:0 20px}
+  }
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.orb{animation:none}}
+</style>
+</head>
+<body>
+
+<canvas id="starscape"></canvas>
+
+<div id="loader">
+  <div class="loader-content">
+    <img src="assets/logo-white.png" alt="Zhongtong Bus">
+    <p class="loader-text">Cargando</p>
+    <div class="loader-track"><div class="loader-fill" id="loaderBar"></div></div>
+  </div>
+</div>
+
+<div id="scrollProgress"></div>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo"><img src="assets/logo-white.png" alt="Zhongtong Bus"><span class="pe">PERÚ</span></a>
+    <div class="nav-links">
+      <a href="#modelos">Modelos</a>
+      <a href="#tecnologia">Equipamiento</a>
+      <a href="#latam">Respaldo</a>
+      <a href="https://wa.me/51977408899?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20los%20buses%20Zhongtong" target="_blank" rel="noopener" class="nav-cta">Cotizar</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="grid-overlay"></div>
+    <div class="wrap hero-content">
+      <span class="hero-badge"><span class="dot"></span>Representantes de Zhongtong en el Perú</span>
+      <h1 class="hero-title">Inicia el 2027 <span class="grad">renovando tu flota</span></h1>
+      <p class="hero-subtitle">Venta de buses Zhongtong diésel, GNV y eléctricos de 7, 9, 11 y 12 metros, desde 26 hasta 55 pasajeros. Para turismo, transporte urbano, corporativo e interprovincial.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/51977408899?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20los%20buses%20Zhongtong" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+          Escríbenos al 977 408 899</a>
+        <a href="#modelos" class="btn btn-secondary">Ver modelos</a>
+      </div>
+    </div>
+    <div class="hero-photo reveal" id="heroPhoto">
+      <div class="hero-photo-frame">
+        <img src="assets/hero-lima.jpg" alt="Flota de buses Zhongtong en la Costa Verde de Lima al amanecer" width="1536" height="1024">
+        <span class="hero-photo-tag">Diésel · GNV · Eléctricos</span>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>Desliza para explorar</span><div class="scroll-arrow"></div></div>
+  </section>
+
+  <!-- SPECS -->
+  <section id="specs">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Zhongtong en cifras</span>
+        <h2 class="section-title">Una marca que mueve<br>al mundo desde 1958</h2>
+        <p class="section-sub">Fabricante con sede en Liaocheng, China, con buses rodando en más de 100 países. En el Perú desde 2006.</p>
+      </div>
+      <div class="specs-grid" id="specsGrid">
+        <div class="spec-item" data-target="300000" data-suffix="+"><span class="spec-number">0</span><span class="spec-label">buses entregados en el mundo</span></div>
+        <div class="spec-item" data-target="100" data-suffix="+"><span class="spec-number">0</span><span class="spec-label">países y regiones</span></div>
+        <div class="spec-item" data-target="2" data-prefix="#"><span class="spec-number">0</span><span class="spec-label">en ventas de buses de 6 m en China (ene–set 2026)</span></div>
+        <div class="spec-item" data-target="55" data-prefix="hasta "><span class="spec-number">0</span><span class="spec-label">pasajeros por unidad en nuestra gama</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELOS -->
+  <section id="modelos">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Modelos en el Perú</span>
+        <h2 class="section-title">Un bus para cada ruta</h2>
+        <p class="section-sub">Elige el combustible que mejor se adapta a tu operación.</p>
+      </div>
+
+      <div class="fuel-filter reveal" role="tablist" aria-label="Filtrar por combustible">
+        <button class="fuel-btn active" data-fuel="all">Todos</button>
+        <button class="fuel-btn" data-fuel="gnv">GNV</button>
+        <button class="fuel-btn" data-fuel="diesel">Diésel</button>
+        <button class="fuel-btn" data-fuel="ev">Eléctrico</button>
+      </div>
+
+      <div class="models-grid" id="modelsGrid">
+        <article class="model-card reveal" data-fuel="gnv">
+          <div class="model-photo"><img src="assets/peru-12m-gnv-lck6129hgn.jpg" alt="Bus de turismo Zhongtong LCK6129HGN de 12 metros a GNV" loading="lazy"><span class="fuel">GNV</span></div>
+          <div class="model-body">
+            <span class="model-tag">Turismo · Interprovincial</span>
+            <h3>Bus de 12 m a GNV</h3>
+            <span class="model-code">LCK6129HGN</span>
+            <p>Eficiencia y sostenibilidad en cada viaje, con 8 tanques de GNV de 220 litros cada uno.</p>
+            <ul class="model-specs">
+              <li><b>380 HP</b>Motor Weichai</li>
+              <li><b>53</b>Asientos</li>
+              <li><b>5 m³</b>Bodega</li>
+              <li><b>ABS + ASR</b>Frenos</li>
+            </ul>
+          </div>
+        </article>
+        <article class="model-card reveal" data-fuel="gnv">
+          <div class="model-photo"><img src="assets/peru-12m-urbano-gnv-lck6125dgn.jpg" alt="Bus urbano Zhongtong LCK6125DGN de 12 metros a GNV" loading="lazy"><span class="fuel">GNV</span></div>
+          <div class="model-body">
+            <span class="model-tag">Urbano</span>
+            <h3>Bus urbano de 12 m</h3>
+            <span class="model-code">LCK6125DGN</span>
+            <p>Motor Weichai GNV de 7,47 L, tanque de 1.100 litros, retardador electromagnético y ejes Dana.</p>
+            <ul class="model-specs">
+              <li><b>199 kW</b>Potencia máxima</li>
+              <li><b>42</b>Asientos</li>
+              <li><b>6 vel.</b>Caja Fast Gear</li>
+              <li><b>ABS</b>Frenos</li>
+            </ul>
+          </div>
+        </article>
+        <article class="model-card reveal" data-fuel="diesel">
+          <div class="model-photo"><img src="assets/peru-11m-diesel-lck6116h.jpg" alt="Bus de turismo Zhongtong LCK6116H de 11 metros diésel" loading="lazy"><span class="fuel diesel">Diésel</span></div>
+          <div class="model-body">
+            <span class="model-tag red">Turismo · Corporativo · Interprovincial</span>
+            <h3>Bus de 11 m diésel</h3>
+            <span class="model-code">LCK6116H</span>
+            <p>Potencia, comodidad y eficiencia para cada recorrido, con tanque de combustible de 400 litros.</p>
+            <ul class="model-specs">
+              <li><b>300 HP</b>Motor Cummins</li>
+              <li><b>44</b>Pasajeros</li>
+              <li><b>7,2 m³</b>Bodega</li>
+              <li><b>Fast</b>Caja mecánica</li>
+            </ul>
+          </div>
+        </article>
+        <article class="model-card reveal" data-fuel="diesel">
+          <div class="model-photo"><img src="assets/peru-7m-diesel.jpg" alt="Bus Zhongtong de 7 metros diésel" loading="lazy"><span class="fuel diesel">Diésel</span></div>
+          <div class="model-body">
+            <span class="model-tag red">Pasajeros · Turismo</span>
+            <h3>Bus de 7 m diésel</h3>
+            <span class="model-code">Motor Weichai 160 HP</span>
+            <p>Compacto y ágil, la opción ideal para transporte de pasajeros o turismo.</p>
+            <ul class="model-specs">
+              <li><b>160 HP</b>Motor Weichai</li>
+              <li><b>25</b>Pasajeros</li>
+              <li><b>WABCO</b>Frenos ABS</li>
+              <li><b>Fast Gear</b>Transmisión</li>
+            </ul>
+          </div>
+        </article>
+        <article class="model-card reveal" data-fuel="ev">
+          <div class="model-img"><img src="assets/urbano-lck6126.jpg" alt="Bus urbano eléctrico Zhongtong LCK6126EVGDA34" loading="lazy"><span class="fuel">Eléctrico</span></div>
+          <div class="model-body">
+            <span class="model-tag">Urbano · 100% eléctrico</span>
+            <h3>Bus urbano eléctrico de 12 m</h3>
+            <span class="model-code">LCK6126EVGDA34</span>
+            <p>Para rutas troncales, con cabina digital y asistencia a la conducción (ADAS) nivel L2 opcional.</p>
+            <ul class="model-specs">
+              <li><b>347,76 kWh</b>Batería CATL</li>
+              <li><b>350 kW</b>Potencia máxima</li>
+              <li><b>92 / 32</b>Pasajeros / asientos</li>
+              <li><b>12,2 m</b>Largo total</li>
+            </ul>
+          </div>
+        </article>
+        <article class="model-card model-card-cta reveal" data-fuel="all">
+          <div class="model-body">
+            <span class="model-tag">Asesoría</span>
+            <h3>¿No sabes cuál elegir?</h3>
+            <p>Cuéntanos tu ruta y tu número de pasajeros. Te asesoramos sobre el bus que tu empresa necesita.</p>
+            <a href="tel:+51977408899" class="btn btn-primary">Llamar al 977 408 899</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIA -->
+  <section id="tecnologia">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Equipamiento</span>
+        <h2 class="section-title">Componentes que ya conoces</h2>
+        <p class="section-sub">Marcas probadas en las carreteras del Perú, con repuestos y servicio fáciles de encontrar.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="13" height="9" rx="1.5"/><path d="M17 11h3v3h-3M7 8V5h6v3M4 12H2"/></svg></div>
+          <h3>Motores Weichai y Cummins</h3>
+          <p>De 160 a 380 HP, con versiones Euro V, según el tamaño y la ruta de tu bus.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 012-2h6a2 2 0 012 2v16M3 21h12M14 10h2a2 2 0 012 2v5a1.5 1.5 0 003 0V8l-3-3"/><path d="M7 8h4"/></svg></div>
+          <h3>Diésel, GNV o eléctrico</h3>
+          <p>El bus de turismo de 12 m a GNV lleva 8 tanques de 220 litros y el urbano, 1.100 litros: más autonomía y menor costo por kilómetro.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Frenado seguro</h3>
+          <p>ABS WABCO, control de tracción ASR, retardador electromagnético y doble circuito neumático.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div>
+          <h3>Transmisión Fast Gear</h3>
+          <p>Cajas mecánicas Fast de 6 velocidades, robustas y de mantenimiento sencillo.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/><path d="M4 11c3-4 13-4 16 0"/></svg></div>
+          <h3>Suspensión y ejes Dana</h3>
+          <p>Suspensión neumática en los buses de turismo y ejes Dana delanteros y posteriores en el urbano.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></div>
+          <h3>Bodegas amplias</h3>
+          <p>Hasta 7,2 m³ de bodega para equipaje en los buses de turismo e interprovinciales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATAM -->
+  <section id="latam">
+    <div class="wrap latam-grid">
+      <div class="reveal">
+        <span class="eyebrow">Respaldo de fábrica</span>
+        <h2 class="section-title">Probados en Latinoamérica</h2>
+        <p class="section-sub">Detrás de cada bus está Zhongtong Bus Holding: más de 700 patentes, 30.000 buses de capacidad anual y presencia en toda la región.</p>
+        <div class="coach-view"><img src="assets/coach-lck6139.jpg" alt="Vistas lateral, frontal y posterior de un bus de turismo Zhongtong" loading="lazy"></div>
+      </div>
+      <div class="latam-list">
+        <div class="latam-item pe reveal"><span class="flag">PE</span><div><h4>Perú</h4><p>Buses Zhongtong en el país desde 2006, incluida una licitación de 96 unidades.</p></div></div>
+        <div class="latam-item reveal"><span class="flag">CL</span><div><h4>Chile</h4><p>Buses eléctricos Zhongtong en el transporte público de Santiago.</p></div></div>
+        <div class="latam-item reveal"><span class="flag">CO</span><div><h4>Colombia</h4><p>Alianza con Navitrans para impulsar la movilidad sostenible.</p></div></div>
+        <div class="latam-item reveal"><span class="flag">+100</span><div><h4>El mundo</h4><p>Clientes en más de 100 países y regiones, de Europa a Medio Oriente.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="orb orb-1"></div>
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <span class="eyebrow">Haz tu pedido</span>
+        <h2>¿Renovando tu flota?</h2>
+        <p>Llámanos o escríbenos y te asesoramos sobre el bus que tu empresa necesita, con toda la información técnica.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="https://wa.me/51977408899?text=Hola%2C%20quisiera%20cotizar%20buses%20Zhongtong" target="_blank" rel="noopener">WhatsApp 977 408 899</a>
+          <a class="btn btn-secondary" href="tel:+51977408899">Llamar ahora</a>
+        </div>
+        <p class="cta-meta"><a href="https://www.instagram.com/zhongtong.peru/" target="_blank" rel="noopener">@zhongtong.peru</a> en Instagram</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img src="assets/logo-white.png" alt="Zhongtong Bus">
+  <div class="footer-links">
+    <a href="#modelos">Modelos</a>
+    <a href="#tecnologia">Equipamiento</a>
+    <a href="tel:+51977408899">977 408 899</a>
+    <a href="https://www.instagram.com/zhongtong.peru/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p class="footer-copy">© 2026 Zhongtong Perú · Representantes de la marca Zhongtong en el Perú. Venta de vehículos diésel, GNV y eléctricos.</p>
+</footer>
+
+<script>
+/* ---------- Loader: preload images ---------- */
+(function(){
+  const srcs=['assets/hero-lima.jpg','assets/logo-white.png','assets/urbano-lck6126.jpg','assets/coach-lck6109.jpg','assets/coach-lck6139.jpg'];
+  const bar=document.getElementById('loaderBar'), loader=document.getElementById('loader');
+  let done=0;
+  const finish=()=>{loader.style.opacity='0';setTimeout(()=>loader.style.display='none',600);document.getElementById('heroPhoto').classList.add('in')};
+  srcs.forEach(s=>{const i=new Image();i.onload=i.onerror=()=>{done++;bar.style.width=(done/srcs.length*100)+'%';if(done===srcs.length)setTimeout(finish,250)};i.src=s});
+  setTimeout(()=>{if(loader.style.display!=='none')finish()},5000);
+})();
+
+/* ---------- Starscape ---------- */
+(function(){
+  const c=document.getElementById('starscape'),ctx=c.getContext('2d');let stars=[],w,h,dpr;
+  function resize(){dpr=window.devicePixelRatio||1;w=innerWidth;h=innerHeight;c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
+  resize();addEventListener('resize',resize);
+  for(let i=0;i<180;i++)stars.push({x:Math.random()*w,y:Math.random()*h,r:.3+Math.random()*1.2,o:.2+Math.random()*.6,dx:(Math.random()-.5)*.04,dy:(Math.random()-.5)*.02,ts:.0005+Math.random()*.002,tp:Math.random()*Math.PI*2});
+  (function loop(){ctx.clearRect(0,0,w,h);const t=Date.now();
+    for(const s of stars){s.x+=s.dx;s.y+=s.dy;if(s.x<0)s.x=w;if(s.x>w)s.x=0;if(s.y<0)s.y=h;if(s.y>h)s.y=0;
+      const o=Math.max(0,s.o+Math.sin(t*s.ts+s.tp)*.3);ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${o})`;ctx.fill()}
+    requestAnimationFrame(loop)})();
+})();
+
+/* ---------- Scroll: progress + navbar ---------- */
+(function(){
+  const bar=document.getElementById('scrollProgress'),nav=document.getElementById('navbar');let ticking=false;
+  function upd(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?scrollY/max*100:0)+'%';nav.classList.toggle('nav-scrolled',scrollY>80);ticking=false}
+  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});upd();
+})();
+
+/* ---------- Reveal ---------- */
+(function(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(el.closest('.models-grid,.features-grid,.latam-list')?(Array.from(el.parentNode.children).indexOf(el)%3)*90:0)+'ms';io.observe(el)});
+})();
+
+/* ---------- Fuel filter ---------- */
+(function(){
+  const btns=document.querySelectorAll('.fuel-btn'),cards=document.querySelectorAll('#modelsGrid .model-card');
+  btns.forEach(b=>b.addEventListener('click',()=>{btns.forEach(x=>x.classList.toggle('active',x===b));const f=b.dataset.fuel;
+    cards.forEach(c=>{const show=f==='all'||c.dataset.fuel===f||c.dataset.fuel==='all';c.classList.toggle('hide',!show);if(show)c.classList.add('in')})}));
+})();
+
+/* ---------- Count-up ---------- */
+(function(){
+  const fmt=n=>Math.floor(n).toLocaleString('es-PE');
+  const ease=t=>t===1?1:1-Math.pow(2,-10*t);
+  function countUp(el,target,suffix,prefix=''){const st=performance.now(),d=2000;el.classList.add('counting');
+    (function u(now){const p=Math.min((now-st)/d,1);el.textContent=prefix+fmt(ease(p)*target)+suffix;if(p<1)requestAnimationFrame(u);else{el.textContent=prefix+fmt(target)+suffix;el.classList.remove('counting')}})(st)}
+  const grid=document.getElementById('specsGrid');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){grid.querySelectorAll('.spec-item').forEach((it,i)=>setTimeout(()=>countUp(it.querySelector('.spec-number'),parseFloat(it.dataset.target),it.dataset.suffix||'',it.dataset.prefix||''),i*200));io.unobserve(e.target)}}),{threshold:.3});
+  io.observe(grid);
+})();
+
+</script>
+</body>
+</html>
